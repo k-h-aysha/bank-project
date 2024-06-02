@@ -346,6 +346,9 @@ svg{
     /* width: fit-content; */
     /* align-self: center; */
 }
+.logout h3{
+    cursor: pointer;
+}
 
 .recent span{
     font-size:1.8rem;
@@ -720,6 +723,7 @@ table {
     padding: 15px 25px;
     color: #fff; /* White text for readability */
     border: 1px solid #4CAF50; /* Green border */
+    
   }
 
   th:nth-child(1) {  /* Target the first column (1-based index) */

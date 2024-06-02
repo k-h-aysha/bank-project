@@ -79,7 +79,6 @@ function recentPeople(nickname, sendAccno) {
 function setRecent() {
     const storedNickname = JSON.parse(localStorage.getItem("nickname")) || [];
     const count = Math.min(storedNickname.length, 5);
-    console.log("heiiii")
     for (let i = 1; i <= 5; i++) {
         document.getElementById(`recent${i}`).textContent = "";
     }
@@ -149,7 +148,7 @@ document.getElementById("home").addEventListener("click", () => {
     window.location.href = "home.html"
 });
 
-// popup account details when my account is clicked 
+//my account is clicked 
 const myaccBtn = document.getElementById("myacc-btn");
 
 //popup 
@@ -400,7 +399,7 @@ function changeMpin() {
 // function updateTransactionDisplay() {
 //     const tableBody = document.getElementById('table').getElementsByTagName('tbody')[0]; // Replace 'yourTableId' with the actual ID of your table
 //     const tableRows = tableBody.querySelectorAll('tr');
-  
+
 //     let firstVisibleRow = true;
 //     tableRows.forEach(row => {
 //       if (firstVisibleRow && !row.classList.contains('hidden-row')) {
@@ -414,35 +413,53 @@ function changeMpin() {
 //   }
 
 //fn to make new row
-function newTransaction(updateHistory){
-     //display transaction in table
-     const tableBody = document.getElementById('transactionTableBody');
-     const numRows = tableBody.children.length;
-
-     // Clear the table body 
-   //   tableBody.innerHTML = ''; // Removes existing rows
-   console.log(numRows)
-     if(numRows<7){
-        updateHistory.forEach(transaction => {
+function newTransaction(storedHistory) {
+    //display transaction in table
+    const tableBody = document.getElementById('transactionTableBody');
+    //  const numRows = tableBody.children.length;
+    tableBody.innerHTML = '';
+    const row = storedHistory.length;
+    //    console.log(numRows)
+    console.log(storedHistory)
+    console.log(row)
+    console.log(storedHistory[1].type)
+     
+    let j=row-1;
+        for (let i = 0; i < storedHistory.length; i++) {
             const newRow = document.createElement('tr');
-        
             const dateCell = document.createElement('td');
-            dateCell.textContent = transaction.date;
-        
+            dateCell.textContent = storedHistory[j].date;
+
             const typeCell = document.createElement('td');
-            typeCell.textContent = transaction.type;
-        
+            typeCell.textContent = storedHistory[j].type;
+
             const amountCell = document.createElement('td');
-            amountCell.textContent = transaction.amount;
-        
+            amountCell.textContent = storedHistory[j].amount;
+
             newRow.appendChild(dateCell);
             newRow.appendChild(typeCell);
             newRow.appendChild(amountCell);
-        
+
             tableBody.appendChild(newRow);
-          });
-     }
+            j--;
+        }
+    
 }
+newTransaction(storedHistory)
+
+//fn to update transaction history
+function setHistory() {
+    // const storedUsers = JSON.parse(localStorage.getItem("bankUsers")) || [];
+    const count = Math.min(storedHistory.length, 5);
+    for (let i = 1; i <= 5; i++) {
+        document.getElementsByTagName(td)[i].textContent = "";
+    }
+    for (let i = 1; i <= count; i++) {
+        document.getElementsByTagName(td).textContent = "";
+    }
+
+}
+
 
 //fn to update transaction history
 function TransHistory(amount) {
@@ -474,24 +491,17 @@ function TransHistory(amount) {
         updateHistory = [history]; // Create a new array with just the new transaction
         console.log("No existing transaction history found.");
     }
-    // const updateHistory = [...storedHistory, history];
-
-    // updateHistory=storedHistory;
-    // updateHistory.push(history);
 
     if (updateHistory.length > 6) {
         updateHistory.shift();
     }
-    storedHistory = updateHistory; 
-    storedUsers[storedUsers.length - 1].transaction=updateHistory
+    storedHistory = updateHistory;
+    storedUsers[storedUsers.length - 1].transaction = updateHistory
     localStorage.setItem("bankUsers", JSON.stringify(storedUsers));
     console.log(updateHistory);
     console.log(storedUsers);
 
-   newTransaction(updateHistory);
-
-  // Call updateTransactionDisplay to manage row visibility
-//   updateTransactionDisplay();
+    newTransaction(updateHistory);
 
 }
 
@@ -588,4 +598,18 @@ document.getElementById("history").addEventListener("click", () => {
     document.getElementById("transactionHistory").style.display = "flex";
     blur();
 
+});
+
+//account details is clicked
+document.getElementById("accDetails").addEventListener("click", () => {
+    event.preventDefault();
+    document.getElementById("myacc").style.display = "block";
+    blur();
+});
+
+
+//logout is clicked
+document.getElementById("logout-btn").addEventListener("click", () => {
+    event.preventDefault();
+    window.location.href = "home.html";
 });
