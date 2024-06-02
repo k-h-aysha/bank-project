@@ -1,0 +1,242 @@
+* {
+    margin: 0px;
+    padding: 1px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(1, 9, 4);
+    font-family: Poppins;
+    padding: 2rem;
+
+}
+
+a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.login {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-invi {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.nav {
+    width: 80%;
+    background-color: rgb(17, 17, 17);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 2rem;
+    padding-left: 1rem;
+    padding: 0.5rem 1.5rem;
+}
+
+.nav-main {
+    display: flex;
+    color: aliceblue;
+    width: 30%;
+    justify-content: space-around;
+
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    transition: all 400ms;
+}
+
+.nav-item:hover {
+    transform: scale(1.1);
+    text-decoration: underline;
+    text-underline-offset: 0.8rem;
+    color: #CAFF33;
+    cursor: pointer;
+}
+
+.nav-btn {
+    display: flex;
+    color: aliceblue;
+    width: 22%;
+    gap: .5rem;
+    justify-content: end;
+}
+
+.btn1 {
+    display: flex;
+    align-items: center;
+    transition: all 400ms;
+    color: aliceblue;
+}
+
+.btn1:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.btn2 {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    background-color: yellowgreen;
+    border-radius: 1rem;
+    color: black;
+    transition: all 400ms;
+
+}
+
+.btn2:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    cursor: default;
+}
+
+.nav-logo h3 {
+    color: aliceblue;
+}
+
+.hamburger {
+    display: none
+}
+
+
+/* hero start here  */
+.hero {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    gap: 1.5rem;
+    align-items: center;
+    background-image: url(./images/background.png);
+    background-color: rgba(5, 5, 5, 0.97);
+    background-blend-mode: overlay;
+    border-radius: 2rem;
+}
+
+.hero-txt {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.hero-txt h1 {
+    font-size: 2rem;
+    color: yellow;
+}
+
+.hero-txt p {
+    font-size: 0.9rem;
+    color: #7d7b7b;
+}
+
+.login-box {
+    display: flex;
+    gap: 1.5rem;
+    width: 90%;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.text-box {
+    padding: 0.8rem;
+    width: 100%;
+    border-radius: 1.5rem;
+    border: 0.4px solid rgb(75, 77, 78);
+    padding-left: 1rem;
+    background-color: transparent;
+    color: aliceblue;
+}
+
+.text-box:focus {
+    background-color: rgb(12, 12, 12);
+    outline: none;
+    color: aliceblue;
+}
+
+.login-forgot a {
+    font-size: small;
+    color: rgb(159, 161, 162);
+}
+
+.btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.login-btn {
+    width: 100%;
+    background-color: rgb(220, 220, 67);
+    text-align: center;
+    padding: 0.5rem 0rem;
+    font-size: medium;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+.signup-btn {
+    width: 100%;
+    background-color: rgb(124, 124, 122);
+    text-align: center;
+    padding: 0.5rem 0rem;
+    font-size: medium;
+    color: aliceblue;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+.link-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 3rem;
+}
+
+#error-msg{
+    color: red;
+}
+@media screen and (max-width: 768px) {
+    .nav-main {
+        display: none;
+    }
+
+    .nav-btn {
+        display: none;
+    }
+
+    .hamburger {
+        display: contents;
+    }
+
+    .login-box {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    nav {
+        width: 90%;
+    }
+
+    .hero {
+        width: 90%;
+    }
+
+    .hero-txt {
+        margin-top: 1rem;
+    }
+}

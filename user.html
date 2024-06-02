@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome!</title>
+    <link rel="stylesheet" href="user.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="body">
+        <!-- fixed side with services -->
+        <div class="fixed">
+            <div class="nav-logo"> <!--logo-->
+                <img src="./logos/mainlogo.svg" alt="mainlogo">
+                <h3>Kashh</h3>
+            </div>
+            <div class="fixed-boxes"> <!--services-->
+                <div id="home" class="fixed-box">
+                    <img src="./logos/case3.svg" alt="">
+                    <h5>Home</h5>
+                </div>
+                <div id="myacc-btn" class="fixed-box">
+                    <img src="./logos/case2.svg" alt="">
+                    <h5>My Account</h5>
+                </div>
+                <div id="history" class="fixed-box">
+                    <img src="./logos/case4.svg" alt="">
+                    <h5>Payment History</h5>
+                </div>
+                <div id="transfer1" class="fixed-box">
+                    <img src="./logos/case1.svg" alt="">
+                    <h5>Transfer</h5>
+                </div>
+                <div id="forgotMpin" class="fixed-box">
+                    <img src="./logos/case2.svg" alt="">
+                    <h5>Forgot MPIN</h5>
+                </div>
+            </div>
+            <div class="contact">
+                <img src="./logos/customer-service-svgrepo-com.svg" alt="">
+                Contact Us
+            </div>
+        </div>
+
+        <!-- main body with services and balance  -->
+        <div class="main-left">
+            <div class="hello">
+                <h2 id="main-name">Hello AYSHA!</h2>
+            </div>
+            <div class="main-img">
+                <img src="./images/Designer.png" alt="">
+            </div>
+            <div class="acc-bal">
+                <h5>Your Balance</h5>
+                <h2 id="balance">$0</h2>
+            </div>
+            <div class="service-content">
+                <div id="deposit" class="service-box">
+                    <img src="./logos/serv1.svg" alt="">
+                    <h3>Deposit</h3>
+                </div>
+                <div id="withdraw" class="service-box">
+                    <img src="./logos/serv2.svg" alt="">
+                    <h3>Withdraw</h3>
+                </div>
+                <div class="service-box">
+                    <img src="./logos/serv3.svg" alt="">
+                    <h3>Account Details</h3>
+                </div>
+                <div id="transfer2" class="service-box">
+                    <img src="./logos/serv4.svg" alt="">
+                    <h3>Transfer</h3>
+                </div>
+            </div>
+        </div>
+        <div class="main-right">
+            <div class="profile-details">
+                <img src="./images/profile-round-1346-svgrepo-com.svg" alt="">
+                
+                <div class="profile-details-sub">
+                    <h2>A/c Holder.</h3>
+                    <h2 id="right-acc-name">K H AYSHA</h2>
+                </div>
+                <div class="profile-details-sub">
+                    <h3>A/c no.</h3>
+                    <h3 id="right-acc-no">45712865</h3>
+                </div>
+            </div>
+            <div class="credits">
+                <div class="out">
+                    <div class="in">
+                        <div id="percent">
+                            65%
+                        </div>
+                    </div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+                    <defs>
+                        <linearGradient id="GradientColor">
+                            <stop offset="0%" stop-color="#e91e63" />
+                            <stop offset="100%" stop-color="#673ab7" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+                </svg>
+                <div class="credit-txt">
+                    <h3>Credits earned:</h3>
+                    <h3>3$</h3>
+                </div>
+            </div>
+            <div class="recent">
+                <span>Recent</span>
+                <div class="people">
+                    <div id="people1" class="p1">
+                        <img src="./logos/profile-circle-svgrepo-com.svg">
+                        <h4 id="recent1">hiba</h4>
+                    </div>
+                    <div id="people2" class="p1">
+                        <img src="./logos/profile-circle-svgrepo-com.svg" alt="">
+                        <h4 id="recent2">deva</h4>
+                    </div>
+                    <div id="people3" class="p1">
+                        <img src="./logos/profile-circle-svgrepo-com.svg" alt="">
+                        <h4 id="recent3">sana</h4>
+                    </div>
+                    <div id="people4" class="p1">
+                        <img src="./logos/profile-circle-svgrepo-com.svg" alt="">
+                        <h4 id="recent4">shifa</h4>
+                    </div>
+                    <div id="people5" class="p1">
+                        <img src="./logos/profile-circle-svgrepo-com.svg" alt="">
+                        <h4 id="recent5">arya</h4>
+                    </div>
+
+                </div>
+                <div class="logout">LOGOUT</div>
+            </div>
+        </div>
+
+    </div>
+    <!-- popups starts here  -->
+
+    <!-- my account popup  -->
+    <div id="myacc">
+        <div id="close-myacc" class="close">
+            <img src="./logos/close-button-svgrepo-com.svg" alt="">
+        </div>
+        <div class="acc-content">
+            <div class="acc-details">
+                <img src="./images/profile-round-1346-svgrepo-com.svg" alt="">
+                <h2 id="myacc-name">K H AYSHA</h2>
+                <div class="profile-details-sub">
+                    <h3>A/c no.</h3>
+                    <h3 id="myacc-no">45712865</h3>
+                </div>
+            </div>
+            <div class="acc-sub">
+                <fieldset>
+                    <legend>Personal Details</legend>
+                    <div class="acc-personal">
+                        <div class="acc-p">
+                            <h2>Email:</h2>
+                            <h3 id="myacc-email">ayshahah@gmail.com</h3>
+                        </div>
+                        <div class="acc-p">
+                            <h2>Phone no:</h2>
+                            <h3 id="myacc-phno">8326386334</h3>
+                        </div>
+                        <div class="acc-p">
+                            <h2>Address:</h2>
+                            <h3 id="myacc-address">Aluva, Ernakulam</h3>
+                        </div>
+                    </div>
+                </fieldset><br>
+                <fieldset>
+                    <legend>Bank Details</legend>
+                    <div class="acc-branch">
+                        <div class="acc-p">
+                            <h2>Bank Details:</h2>
+                            <h3>Kash Bank, Kochi, Kerala</h3><br>
+                        </div>
+                        <div class="acc-p">
+                            <h2>Branch:</h2>
+                            <h3>Edappally</h3>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <!-- money transfer ,deposit and withdraw popup  -->
+    <div id="popup" class="popup">
+        <div id="close-popup" class="close" style="background-color: black;color: wheat;">
+            <img src="./logos/close-black.svg" alt="">
+        </div>
+        <div id="select-people" class="select-people">
+            <div class="heading">Send Money</div>
+            <div class="send-info">
+                <fieldset>
+                    <label for="acc-no">Enter Account no:</label>
+                    <input id="acc-no" type="number">
+                    <label for="reacc-no">Re-Enter Account no:</label>
+                    <input id="reacc-no" type="number">
+                </fieldset>
+                <fieldset>
+                    <label for="holder">Enter Account Holder Name:</label>
+                    <input id="holder" type="text">
+                    <label for="nickname">Enter Nickname:</label>
+                    <input id="nickname" type="text">
+                </fieldset>
+                <span id="error-msg1" class="error-msg">hy</span>
+
+            </div>
+            <div id="verify" class="verify">
+                VERIFY
+            </div>
+        </div>
+        <div id="money-verify" class="money-verify">
+            <div id="popup-heading" class="heading">Send Money</div>
+            <div class="money-verify-sub">
+                <div class="amount">
+                    <label for="amount">Enter Amount:</label>
+                    <input type="number" id="amount">
+                </div>
+                <div class="mpin">
+                    <label for="mpin">Confirm MPIN</label>
+                    <input type="password" id="mpin" maxlength="4">
+                </div>
+                <span id="error-msg2" class="error-msg">hy</span>
+            </div>
+            <div id="send" class="send">SEND</div>
+        </div>
+        <div id="success" class="success">
+            <img id="successimg" src="./logos/success-svgrepo-com (1).svg" alt="">
+            <img id="failedimg" src="./logos/status-failed-svgrepo-com.svg" alt="">
+            <div class="success-sub">
+                <h2 id="success-msg">Payment successfull</h2>
+                <h4 id="popup-name">account holder </h4>
+                <h4 id="popup-accno">acc no</h4>
+            </div>
+            <div id="done" class="done">DONE</div>
+        </div>
+        <div id="forgotM1" class="forgotMpin">
+            <div class="forgot-heading">Forgot MPIN</div>
+            <div class="forgotMpin-sub1">
+                <div class="forgotMpin-sub2">
+                    <input id="forgotM-email" type="email" placeholder="Enter your email">
+                    <input id="forgotM-pass" type="password" placeholder="Enter your password">
+                </div>
+                <a href="">Forgot Password</a>
+            </div>
+            <div class="forgotMpin-submit">
+                <span id="error-msg3" class="error-msg">hy</span>
+                <div id="submit" class="submit">SUBMIT</div>
+            </div>
+        </div>
+        <div id="forgotM2" class="forgotMpin">
+            <div class="forgot-heading">Forgot MPIN</div>
+                <div class="forgotMpin-sub2">
+                    <input id="forgotM-newMpin" type="number" placeholder="Enter 4 digit MPIN">
+                    <input id="forgotM-reMpin" type="password" placeholder="Confirm MPIN" maxlength="4">
+                </div>
+            <div class="forgotMpin-submit">
+                <span id="error-msg4" class="error-msg">hy</span>
+                <div id="confirm-mpin" class="submit">CONFIRM</div>
+            </div>
+        </div>
+        <div id="transactionHistory" class="history">
+            <div class="forgot-heading">Transaction History </div>
+            <div class="trans-table">
+                <table id="table">
+                    <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Type</th>
+                          <th>Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody id="transactionTableBody"> </tbody>
+                </table>
+            </div>
+        </div>
+
+</body>
+<script src="user.js"></script>
+
+</html>
