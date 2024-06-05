@@ -137,6 +137,10 @@ function signup() { //this fn is called whet submt clicked
                 storedUsers.push(user);
                 localStorage.setItem("bankUsers", JSON.stringify(storedUsers));
 
+
+                //store the user in sesion storage
+                sessionStorage.setItem("bankUsers", JSON.stringify(user));
+
                 //clear form
                 phnoForm.value = "";
                 addressForm.value = "";
@@ -145,6 +149,7 @@ function signup() { //this fn is called whet submt clicked
                 rempinForm.value = "";
 
                 console.log(user)
+                //nickname clearing from local storage
                 const storedNickname = JSON.parse(localStorage.getItem("nickname")) || [];
                 storedNickname.splice(0,storedNickname.length);
                 localStorage.setItem("nickname",JSON.stringify(storedNickname));

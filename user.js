@@ -105,48 +105,59 @@ for (let i = 1; i <= 5; i++) {
 
 
 // //progress bar
-// const progressBar = document.querySelector('.full');
-// const insideCircle = document.querySelector('.inside-circle');
-// let degree = (0.36 * userpercent) / 2;
-// progressBar.style.transform = `rotate(90deg)`;
-// insideCircle.textContent = `${Math.round(userpercent)}%`;
 
 
-// function updateProgress(amount) {
-//     const increment = 1;
-//     const rewardAmount = 5;
 
-//     const storedUsers = JSON.parse(localStorage.getItem("bankUsers")) || [];
-//     const currentUser = storedUsers[storedUsers.length - 1].percent;
-//     let currentPercentage = parseInt(currentUser);
-//     console.log(typeof amount)
-//     let newPercentage = Math.min(currentPercentage + (amount / 2) * increment, 100);
+//fn to update progress bar
+//for each transfer of $2 1% will increase
+function updateProgress(amount) {
+    // const increment = 1;
+    const rewardAmount = 5;
 
-//     degree = (3.6 * newPercentage) / 2;
-//     progressBar.style.transform = `rotate(90deg)`;
-//     insideCircle.textContent = `${Math.round(newPercentage)}%`;
-//     console.log(currentPercentage)
-//     console.log(newPercentage)
-//     console.log(degree)
-//     console.log(amount)
+    const storedUsers = JSON.parse(localStorage.getItem("bankUsers")) || [];
+    const currentUser = storedUsers[storedUsers.length - 1].percent;
+    let currentPercentage = parseInt(currentUser);
+    console.log(typeof amount)
+    let newPercentage = currentPercentage + (amount / 2);
 
-//     storedUsers[storedUsers.length - 1].percent=newPercentage;
-//     localStorage.setItem("bankUsers", JSON.stringify(storedUsers));
+    document.getElementById("progress").style.width=`${newPercentage}%`;
+    document.getElementById("progress-txt").textContent=`${newPercentage}%`;
 
-//     if (newPercentage == 100) {
-//         let newBalance = parseInt(bankBalance) + rewardAmount;
-//         updateBal(newBalance);
-//         storedUsers[storedUsers.length - 1].percent="0";
-//         localStorage.setItem('bankUsers', JSON.stringify(storedUsers));
-//     }
+    if(newPercentage<=100){
+    currentPercentage=newPercentage.toString();
+    storedUsers[storedUsers.length - 1].percent=currentPercentage;
+    localStorage.setItem("bankUsers", JSON.stringify(storedUsers));
+    }
+    if (newPercentage > 100) {
+        newPercentage=newPercentage-100;
+        currentPercentage=newPercentage.toString();
+        let newBalance = parseInt(bankBalance) + rewardAmount;
+        updateBal(newBalance);
+        storedUsers[storedUsers.length - 1].percent=currentPercentage;
+        localStorage.setItem('bankUsers', JSON.stringify(storedUsers));
+    }
 
-// }
+}
 
 // when home is clicked 
 document.getElementById("home").addEventListener("click", () => {
     event.preventDefault();
-    window.location.href = "home.html"
+    document.getElementById("popup").style.display = "flex";
+    document.getElementById("popup").style.height = "35vh";
+    document.getElementById("popup").style.top = "25vh";
+    document.getElementById("exit").style.display = "flex";
+    blur();
+
 });
+
+document.getElementById("exit-yes").addEventListener("click",()=>{
+    event.preventDefault();
+    window.location.href = "home.html";
+})
+document.getElementById("exit-no").addEventListener("click",()=>{
+    event.preventDefault();
+    closePopup();
+})
 
 //my account is clicked 
 const myaccBtn = document.getElementById("myacc-btn");
@@ -175,6 +186,8 @@ document.getElementById("myacc-address").textContent = `${userAddress.house},${u
 
 //close all popup
 function closePopup() {
+    document.getElementById("popup").style.height = "77vh";
+    document.getElementById("popup").style.top = "15vh";
     document.getElementById("popup").style.display = "none";
     document.getElementById("select-people").style.display = "none";
     document.getElementById("money-verify").style.display = "none";
@@ -268,6 +281,7 @@ function transaction() {
         document.getElementById("error-msg2").textContent = "MPIN is incorrect";
     }
     TransHistory(amount);
+    updateProgress(amount)
 }
 
 //fn to check if user exist
@@ -422,7 +436,7 @@ function newTransaction(storedHistory) {
     //    console.log(numRows)
     console.log(storedHistory)
     console.log(row)
-    console.log(storedHistory[1].type)
+    // console.log(storedHistory[1].type)
      
     let j=row-1;
         for (let i = 0; i < storedHistory.length; i++) {
@@ -611,5 +625,9 @@ document.getElementById("accDetails").addEventListener("click", () => {
 //logout is clicked
 document.getElementById("logout-btn").addEventListener("click", () => {
     event.preventDefault();
-    window.location.href = "home.html";
+    document.getElementById("popup").style.display = "flex";
+    document.getElementById("popup").style.height = "35vh";
+    document.getElementById("popup").style.top = "25vh";
+    document.getElementById("exit").style.display = "flex";
+    blur();
 });
