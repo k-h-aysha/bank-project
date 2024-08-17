@@ -1,20 +1,21 @@
-const storedUsers = JSON.parse(localStorage.getItem("bankUsers")) || [];
-console.log(storedUsers);
+const sessionUser = JSON.parse(sessionStorage.getItem("bankUsers")) || [];
+const storedUser = JSON.parse(localStorage.getItem("bankUsers")) || [];
+console.log(sessionUser);
 let currentAction = "none";
 let recentAction = null;
 
 
 // get last logedin username
-const userName = storedUsers[storedUsers.length - 1].name;
-const userAccno = storedUsers[storedUsers.length - 1].accno;
-const userEmail = storedUsers[storedUsers.length - 1].email;
-const userPhno = storedUsers[storedUsers.length - 1].ph_no;
-const userAddress = storedUsers[storedUsers.length - 1].address;
-const userPass = storedUsers[storedUsers.length - 1].pass;
-const userMpin = storedUsers[storedUsers.length - 1].mpin;
-let storedHistory = storedUsers[storedUsers.length - 1].transaction;
-const userpercent = storedUsers[storedUsers.length - 1].percent;
-let balance = storedUsers[storedUsers.length - 1].bal;
+const userName = sessionUser.name;
+const userAccno = sessionUser.accno;
+const userEmail = sessionUser.email;
+const userPhno = sessionUser.ph_no;
+const userAddress = sessionUser.address;
+const userPass = sessionUser.pass;
+const userMpin = sessionUser.mpin;
+let storedHistory = sessionUser.transaction;
+const userpercent = sessionUser.percent;
+let balance = sessionUser.bal;
 
 // change name of user in the heading 
 document.getElementById("main-name").textContent = `Hello ${userName}!`;
@@ -43,15 +44,15 @@ function unblur() {
 
 //fn to update balance
 function updateBal(newBalance) {
-    storedUsers[storedUsers.length - 1].bal = newBalance.toString();
-    localStorage.setItem("bankUsers", JSON.stringify(storedUsers));
+    sessionUser.bal = newBalance.toString();
+    sessionStorage.setItem("bankUsers", JSON.stringify(sessionUser));
 }
 
 //nickname
 let nickname = null;
 //change recent transactions
 function recentPeople(nickname, sendAccno) {
-    const storedNickname = JSON.parse(localStorage.getItem("nickname")) || [];
+    const storedNickname = JSON.parse(sessionStorage.getItem("nickname")) || [];
     //check if accno already made transfer
     const recentUserExist = storedNickname.findIndex(user => user.sendAccno === sendAccno)
     //new transaction
@@ -66,7 +67,7 @@ function recentPeople(nickname, sendAccno) {
         if (updateNickname.length > 5) {
             updateNickname.shift();
         }
-        localStorage.setItem("nickname", JSON.stringify(updateNickname));
+        sessionStorage.setItem("nickname", JSON.stringify(updateNickname));
         console.log(updateNickname);
     }
     if (storedNickname.length > 5) {
@@ -77,7 +78,7 @@ function recentPeople(nickname, sendAccno) {
 
 //recents
 function setRecent() {
-    const storedNickname = JSON.parse(localStorage.getItem("nickname")) || [];
+    const storedNickname = JSON.parse(sessionStorage.getItem("nickname")) || [];
     const count = Math.min(storedNickname.length, 5);
     for (let i = 1; i <= 5; i++) {
         document.getElementById(`recent${i}`).textContent = "";
@@ -96,7 +97,7 @@ for (let i = 1; i <= 5; i++) {
         recentAction = "hello";
         document.getElementById("popup-heading").textContent = "Transfer";
         currentAction = "Transfer"
-        const storedNickname = JSON.parse(localStorage.getItem("nickname")) || [];
+        const storedNickname = JSON.parse(sessionStorage.getItem("nickname")) || [];
         recentAccno = storedNickname[storedNickname.length - i].sendAccno;
         openMoneyVerify();
         console.log(recentAccno);
@@ -114,8 +115,8 @@ function updateProgress(amount) {
     // const increment = 1;
     const rewardAmount = 5;
 
-    const storedUsers = JSON.parse(localStorage.getItem("bankUsers")) || [];
-    const currentUser = storedUsers[storedUsers.length - 1].percent;
+    const sessionUser = JSON.parse(sessionStorage.getItem("bankUsers")) || [];
+    const currentUser = sessionUser.percent;
     let currentPercentage = parseInt(currentUser);
     console.log(typeof amount)
     let newPercentage = currentPercentage + (amount / 2);
@@ -125,16 +126,16 @@ function updateProgress(amount) {
 
     if(newPercentage<=100){
     currentPercentage=newPercentage.toString();
-    storedUsers[storedUsers.length - 1].percent=currentPercentage;
-    localStorage.setItem("bankUsers", JSON.stringify(storedUsers));
+    sessionUser.percent=currentPercentage;
+    sessionStorage.setItem("bankUsers", JSON.stringify(sessionUser));
     }
     if (newPercentage > 100) {
         newPercentage=newPercentage-100;
         currentPercentage=newPercentage.toString();
         let newBalance = parseInt(bankBalance) + rewardAmount;
         updateBal(newBalance);
-        storedUsers[storedUsers.length - 1].percent=currentPercentage;
-        localStorage.setItem('bankUsers', JSON.stringify(storedUsers));
+        sessionUser.percent=currentPercentage;
+        sessionStorage.setItem('bankUsers', JSON.stringify(sessionUser));
     }
 
 }
@@ -220,7 +221,7 @@ function transaction() {
     const amount = parseInt(amountString.value);
     const mpinForm = document.getElementById("mpin");
     const mpinDeposit = mpinForm.value;
-    let bankBalance = storedUsers[storedUsers.length - 1].bal;
+    let bankBalance = sessionUser.bal;
 
     if (!amountString.value || !mpinForm.value) {
         document.getElementById("error-msg2").textContent = "Please fill required fields";
@@ -240,7 +241,7 @@ function transaction() {
             newBalance = parseInt(bankBalance) - amount;
         }
         else if ((currentAction === "Transfer") && bankBalance >= amount) {
-            // newBalance = parseInt(storedUsers[storedUsers.length - 1].bal) - amount;
+            // newBalance = parseInt(sessionUser[sessionUser.length - 1].bal) - amount;
             newBalance = parseInt(bankBalance) - amount;
         }
         else if (bankBalance < amount) {
@@ -265,9 +266,9 @@ function transaction() {
             }
             document.getElementById("popup-name").textContent = `Account holder: ${sendUserName(sendAccno)}`;
             document.getElementById("popup-accno").textContent = `A/c no: ${sendAccno}`;
-            sendBalance = parseInt(storedUsers[sendUserIndex(sendAccno)].bal) + amount;
-            storedUsers[sendUserIndex(sendAccno)].bal = sendBalance.toString();
-            localStorage.setItem("bankUsers", JSON.stringify(storedUsers));
+            sendBalance = parseInt(storedUser[sendUserIndex(sendAccno)].bal) + amount;
+            storedUser[sendUserIndex(sendAccno)].bal = sendBalance.toString();
+            sessionStorage.setItem("bankUsers", JSON.stringify(sessionUser));
             recentPeople(nickname, sendAccno);
             console.log(amount);
             setRecent();
@@ -294,14 +295,14 @@ function sendUserExist(sendAccno) {
 
 //fn to get send user name
 function sendUserName(sendAccno) {
-    const storedUsers = JSON.parse(localStorage.getItem("bankUsers")) || [];
-    const user = storedUsers.find(user => user.accno === sendAccno);
+    const storedUser = JSON.parse(localStorage.getItem("bankUsers")) || [];
+    const user = storedUser.find(user => user.accno === sendAccno);
     return user ? user.name : false;
 }
 //fn to find send user balance
 function sendUserIndex(sendAccno) {
-    const storedUsers = JSON.parse(localStorage.getItem("bankUsers")) || [];
-    return storedUsers.findIndex(user => user.accno === sendAccno);
+    const storedUser = JSON.parse(localStorage.getItem("bankUsers")) || [];
+    return storedUser.findIndex(user => user.accno === sendAccno);
 }
 
 //fn to verify acc to transfer
@@ -368,8 +369,8 @@ function setMpin() {
         reMpinForm.value = "";
 
         //change mpin in local storage
-        storedUsers[storedUsers.length - 1].mpin = newMpin.toString();
-        localStorage.setItem("bankUsers", JSON.stringify(storedUsers));
+        sessionUser.mpin = newMpin.toString();
+        sessionStorage.setItem("bankUsers", JSON.stringify(sessionUser));
 
         document.getElementById("forgotM2").style.display = "none";
         document.getElementById("success").style.display = "flex";
@@ -463,7 +464,7 @@ newTransaction(storedHistory)
 
 //fn to update transaction history
 function setHistory() {
-    // const storedUsers = JSON.parse(localStorage.getItem("bankUsers")) || [];
+    // const sessionUser = JSON.parse(localStorage.getItem("bankUsers")) || [];
     const count = Math.min(storedHistory.length, 5);
     for (let i = 1; i <= 5; i++) {
         document.getElementsByTagName(td)[i].textContent = "";
@@ -477,8 +478,8 @@ function setHistory() {
 
 //fn to update transaction history
 function TransHistory(amount) {
-    const storedUsers = JSON.parse(localStorage.getItem("bankUsers")) || [];
-    console.log(storedUsers)
+    const sessionUser = JSON.parse(sessionStorage.getItem("bankUsers")) || [];
+    console.log(sessionUser)
     console.log(storedHistory)
     let updateHistory;
 
@@ -510,16 +511,16 @@ function TransHistory(amount) {
         updateHistory.shift();
     }
     storedHistory = updateHistory;
-    storedUsers[storedUsers.length - 1].transaction = updateHistory
-    localStorage.setItem("bankUsers", JSON.stringify(storedUsers));
+    sessionUser.transaction = updateHistory
+    sessionStorage.setItem("bankUsers", JSON.stringify(sessionUser));
     console.log(updateHistory);
-    console.log(storedUsers);
+    console.log(sessionUser);
 
     newTransaction(updateHistory);
 
 }
 
-console.log(storedUsers)
+console.log(sessionUser)
 
 //deposit is clicked
 document.getElementById("deposit").addEventListener("click", () => {
@@ -629,5 +630,6 @@ document.getElementById("logout-btn").addEventListener("click", () => {
     document.getElementById("popup").style.height = "35vh";
     document.getElementById("popup").style.top = "25vh";
     document.getElementById("exit").style.display = "flex";
+    localStorage.setItem("bankUsers",sessionUser)
     blur();
 });
